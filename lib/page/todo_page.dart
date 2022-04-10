@@ -73,7 +73,7 @@ class _TodoPageState extends State<TodoPage> {
         child: Icon(Icons.add),
         onPressed: () async {
           // asyncをつけてメソッドを定義することで非同期処理を実行できる
-          Map<String, String> todo = await Navigator.push(
+          Map<String, String>? todo = await Navigator.push(
             // Navigator.pushで繊維席画面へ、Navigator.popで一つ前の画面に戻る
             // awaitを使うと、遷移先の画面から値を非同期で受け取ることができる, 今回はtitleとcontentをMapで受け取る
             context, MaterialPageRoute(builder: (context) {
