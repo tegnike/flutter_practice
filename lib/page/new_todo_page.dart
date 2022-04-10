@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../model/todo.dart';
+import '../provider/todos.dart';
 
 class NewTodoPage extends StatelessWidget {
   // stateを保つ必要がないのでStatelessを継承
@@ -45,11 +48,11 @@ class NewTodoPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   if (_titleController.text.isNotEmpty && _contentController.text.isNotEmpty) {
-                    Navigator.pop(context, {
-                      // 第2引数（ここ）にMapを渡すことでテキストをTodoPageに返す
-                      "title": _titleController.text,
-                      "content": _contentController.text
-                    });
+                    context.read(todosProvider.notifier).add(
+                      title: _titleController.text,
+                      content: _contentController.text
+                    );
+                    Navigator.pop(context);
                   }
                 },
                 child: const Text("登録")

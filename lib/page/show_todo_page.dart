@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../model/todo.dart';
+import '../provider/todos.dart';
 
 class ShowTodoPage extends StatefulWidget {
   final TodoContent todo;
@@ -37,6 +39,7 @@ class _ShowTodoState extends State<ShowTodoPage> {
                   setState(() {
                     widget.todo.setNextState();
                   });
+                  context.read(todosProvider.notifier).update();
                   ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(content: Text("状態を更新しました")));
                 },

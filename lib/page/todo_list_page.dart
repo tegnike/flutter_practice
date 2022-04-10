@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../provider/todos.dart';
 import './show_todo_page.dart';
-import '../model/todo.dart';
 
-class TodoListPage extends StatelessWidget {
-  // stateを保つ必要がないのでStatelessを継承
-
-  final List<TodoContent> todos;
-
+class TodoListPage extends HookWidget {
   // コンストラクタ
-  TodoListPage(
-    {
-      required this.todos
-    }
-  );
+  TodoListPage();
 
   @override
   Widget build(BuildContext context) {
+    final todos = useProvider(selectTodosProvider);
     return Container(
       child: Center(
         child: Column(
